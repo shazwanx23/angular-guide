@@ -9,6 +9,17 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
-
+.controller('View2Ctrl', ['$http','$scope',  function($http,$scope) {
+	$scope.find = function(user){
+		var rawUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + user.location;
+		var encoded = encodeURI(rawUrl);
+		$scope.location = {};
+		$http({
+			method: 'GET',
+			url: rawUrl
+		}).then(function(res){
+			$scope.location.latitude = res.data.results[0].geometry.location.lat;
+			$scope.location.longitude = res.data.results[0].geometry.location.lng;
+		}).catch(function(e){ console.log(e);});
+	}
 }]);

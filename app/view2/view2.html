@@ -1,5 +1,7 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<h1>Location App</h1>
+<div>
+  <form novalidate class="simple-form">
+    <label>Location: <input type="text" ng-model="user.location" /></label><br />
+    <input type="submit" ng-click="find(user)" value="Find Location" />
+ </form>
+ <p>{{location}}</p>
